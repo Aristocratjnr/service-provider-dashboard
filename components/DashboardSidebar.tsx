@@ -1,82 +1,45 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import {
-  Calendar,
-  CreditCard,
-  LayoutDashboard,
-  Shirt,
-  Zap,
-} from "lucide-react";
 
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import Image from "next/image";
-
-const menuItems = [
-  {
-    title: "Overview",
-    href: "/overview",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Orders",
-    href: "/orders",
-    icon: Shirt,
-  },
-  {
-    title: "Schedule",
-    href: "/schedule",
-    icon: Calendar,
-  },
-  {
-    title: "Payment",
-    href: "/payment",
-    icon: CreditCard,
-  },
-  {
-    title: "Quick Actions",
-    href: "/quick-actions",
-    icon: Zap,
-  },
-];
-
-export default function DashboardSidebar() {
-  const pathname = usePathname();
-
+export default function Sidebar() {
   return (
-    <Sidebar>
-      <SidebarHeader className="border-none flex mx-auto mb-10">
-        <Image src="/images/logo.svg" width={120} height={85} alt="logo" />
-      </SidebarHeader>
-      <SidebarContent className="flex mx-auto">
-        <SidebarMenu>
-          {menuItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <SidebarMenuItem key={item.href}>
-                <SidebarMenuButton
-                  asChild
-                  isActive={isActive}
-                  className="gap-6 text-lg mb-5"
-                >
-                  <Link href={item.href}>
-                    <item.icon className="h-5 w-5" />
-                    <span>{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            );
-          })}
-        </SidebarMenu>
-      </SidebarContent>
-    </Sidebar>
+    <aside className="bg-gray-800 text-white w-64 min-h-screen flex flex-col">
+      <div className="p-4 text-lg font-bold">Dashboard</div>
+      <nav className="flex-grow">
+        <ul className="space-y-2 p-4">
+          <li>
+            <Link
+              href="/overview"
+              className="block p-2 rounded hover:bg-gray-700"
+            >
+              Overview
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/orders"
+              className="block p-2 rounded hover:bg-gray-700"
+            >
+              Orders
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/schedule"
+              className="block p-2 rounded hover:bg-gray-700"
+            >
+              Schedules
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/payment"
+              className="block p-2 rounded hover:bg-gray-700"
+            >
+              Payments
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </aside>
   );
 }
