@@ -1,48 +1,61 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
+
+import {
+  ClipboardDocumentListIcon,
+  InboxStackIcon,
+  CalendarIcon,
+  BanknotesIcon,
+} from "@heroicons/react/24/solid";
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
+  const links = [
+    { name: "Overview", href: "/overview", icon: ClipboardDocumentListIcon },
+    { name: "Orders", href: "/orders", icon: InboxStackIcon },
+    { name: "Schedules", href: "/schedule", icon: CalendarIcon },
+    { name: "Payments", href: "/payment", icon: BanknotesIcon },
+  ];
+
   return (
-    <div className="text-white w-64 min-h-screen flex flex-col bg-white border-r shadow-lg">
-      <div className="p-4 text-lg font-bold">
+    <div className="flex min-h-screen w-64 flex-col border-r bg-white shadow-lg">
+      <div className="mx-auto mb-10 flex p-4 text-lg font-bold">
         <Image src="/images/logo.svg" width={120} height={85} alt="logo" />
       </div>
-      <nav className="flex-grow">
-        <ul className="space-y-2 p-4">
-          <li>
-            <Link
-              href="/overview"
-              className="block p-2 rounded hover:bg-gray-700 transition-colors duration-300"
-            >
-              Overview
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/orders"
-              className="block p-2 rounded hover:bg-gray-700 transition-colors duration-300"
-            >
-              Orders
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/schedule"
-              className="block p-2 rounded hover:bg-gray-700 transition-colors duration-300"
-            >
-              Schedules
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/payment"
-              className="block p-2 rounded hover:bg-gray-700 transition-colors duration-300"
-            >
-              Payments
-            </Link>
-          </li>
+      <div className="flex-grow">
+        <ul className="space-y-4 p-4 text-lg">
+          {links.map((link) => {
+            const Icon = link.icon;
+            return (
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  className={clsx(
+                    "flex items-center gap-3 rounded p-2 transition-colors duration-300 hover:bg-blue-300 hover:text-white",
+                    {
+                      "bg-blue-300 font-semibold text-white":
+                        pathname === link.href,
+                    },
+                  )}
+                >
+                  <Icon
+                    className={clsx("h-5 w-5", {
+                      "text-white": pathname === link.href,
+                      "text-black": pathname !== link.href,
+                    })}
+                  />
+                  {link.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
-      </nav>
+      </div>
     </div>
   );
 }
