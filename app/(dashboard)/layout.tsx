@@ -1,22 +1,18 @@
-import { DashboardNavbar } from "@/components/DashboardNavbar";
+import DashboardNavbar from "@/components/DashboardNavbar";
 import DashboardSidebar from "@/components/DashboardSidebar";
 
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-
-export default function DashboardLayout({
-  children,
-}: {
+interface LayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function DashboardLayout({ children }: LayoutProps) {
   return (
-    <SidebarProvider>
-      <div className="flex min-h-screen">
-        <DashboardSidebar />
-        <SidebarInset className="flex flex-col">
-          <DashboardNavbar />
-          <main className="flex-1">{children}</main>
-        </SidebarInset>
+    <div className="flex">
+      <DashboardSidebar />
+      <div className="flex-1 flex flex-col min-h-screen">
+        <DashboardNavbar />
+        <main className="p-6 bg-gray-100 flex-grow">{children}</main>
       </div>
-    </SidebarProvider>
+    </div>
   );
 }
