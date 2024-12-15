@@ -10,7 +10,6 @@ import {
   Zap,
 } from "lucide-react";
 
-import { TulaundryLogo } from "@/components/TuLaundryLogo";
 import {
   Sidebar,
   SidebarContent,
@@ -19,44 +18,45 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Image from "next/image";
 
 const menuItems = [
   {
     title: "Overview",
-    href: "/dashboard",
+    href: "/overview",
     icon: LayoutDashboard,
   },
   {
     title: "Orders",
-    href: "/dashboard/orders",
+    href: "/orders",
     icon: Shirt,
   },
   {
     title: "Schedule",
-    href: "/dashboard/schedule",
+    href: "/schedule",
     icon: Calendar,
   },
   {
     title: "Payment",
-    href: "/dashboard/payment",
+    href: "/payment",
     icon: CreditCard,
   },
   {
     title: "Quick Actions",
-    href: "/dashboard/quick-actions",
+    href: "/quick-actions",
     icon: Zap,
   },
 ];
 
-export function DashboardSidebar() {
+export default function DashboardSidebar() {
   const pathname = usePathname();
 
   return (
     <Sidebar>
-      <SidebarHeader className="border-none">
-        <TulaundryLogo />
+      <SidebarHeader className="border-none flex mx-auto mb-10">
+        <Image src="/images/logo.svg" width={120} height={85} alt="logo" />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="flex mx-auto">
         <SidebarMenu>
           {menuItems.map((item) => {
             const isActive = pathname === item.href;
@@ -65,7 +65,7 @@ export function DashboardSidebar() {
                 <SidebarMenuButton
                   asChild
                   isActive={isActive}
-                  className="gap-4"
+                  className="gap-6 text-lg mb-5"
                 >
                   <Link href={item.href}>
                     <item.icon className="h-5 w-5" />
