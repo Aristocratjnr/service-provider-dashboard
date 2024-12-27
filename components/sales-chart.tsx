@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState } from "react"
-import { DonutChart } from "./charts/donut-chart"
+import { DonutChart } from "@/components/charts/donut-chart"
 import { formatCurrency, colors } from "@/lib/utils"
 
 export function SalesChart() {

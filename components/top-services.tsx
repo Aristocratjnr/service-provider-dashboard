@@ -1,40 +1,44 @@
+'use client'
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { AlertCircle } from 'lucide-react'
 
-interface TopService {
-  name: string
-  orders: number
+interface TopIssue {
+  type: string
+  count: number
   status: string
 }
 
 interface TopServicesProps {
-  data: TopService[]
+  data: TopIssue[]
 }
 
 export function TopServices({ data }: TopServicesProps) {
   return (
-    <Card>
-      <CardHeader>
-        <h3 className="text-base font-medium">Top Services</h3>
+    <Card className="shadow-sm bg-white">
+      <CardHeader className="pb-3">
+        <h3 className="text-lg font-medium text-gray-900">Top Issues</h3>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-0">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead className="w-[50%]">Top Services</TableHead>
-              <TableHead className="text-right">Orders</TableHead>
-              <TableHead className="text-right">Status</TableHead>
+            <TableRow className="hover:bg-transparent">
+              <TableHead className="text-sm font-medium text-gray-500 pl-6">Type of issues</TableHead>
+              <TableHead className="text-sm font-medium text-gray-500">Number of issues</TableHead>
+              <TableHead className="text-sm font-medium text-gray-500 pr-6">Type</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data.map((service) => (
-              <TableRow key={service.name}>
-                <TableCell className="font-medium">{service.name}</TableCell>
-                <TableCell className="text-right">{service.orders}</TableCell>
-                <TableCell className="text-right">
-                  <span className="inline-flex items-center rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700">
-                    {service.status}
-                  </span>
+            {data.map((issue) => (
+              <TableRow key={issue.type} className="hover:bg-transparent">
+                <TableCell className="text-sm text-gray-900 pl-6">{issue.type}</TableCell>
+                <TableCell className="text-sm text-gray-900">{issue.count}</TableCell>
+                <TableCell className="text-sm text-gray-900 pr-6">
+                  <div className="flex items-center space-x-1.5 text-amber-600">
+                    <AlertCircle className="h-4 w-4" />
+                    <span>{issue.status}</span>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
