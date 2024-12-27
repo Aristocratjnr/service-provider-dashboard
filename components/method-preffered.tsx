@@ -7,8 +7,6 @@ import { ArrowUpRight } from 'lucide-react'
 interface Method {
   name: string
   count: number
-  percentage: number
-  color: string
 }
 
 interface MethodPreferredProps {
@@ -22,36 +20,45 @@ export function MethodPreferred({ startDate, endDate, methods }: MethodPreferred
   
   return (
     <Card className="shadow-sm bg-white">
-      <CardHeader className="pb-2">
+      <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
-          <div className="space-y-1">
-            <h3 className="text-base font-medium text-gray-900">Method Preferred</h3>
+          <div className="space-y-0.5">
+            <h3 className="text-base font-medium leading-6 text-gray-900">Method Preferred</h3>
             <p className="text-sm text-gray-500">
               {startDate} - {endDate}
             </p>
           </div>
-          <Button variant="ghost" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+          <Button 
+            variant="ghost" 
+            className="h-8 text-sm text-blue-600 hover:text-blue-700 font-medium hover:bg-transparent px-0"
+          >
             View detail report
             <ArrowUpRight className="ml-1 h-4 w-4" />
           </Button>
         </div>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-6">
           {methods.map((method) => (
             <div key={method.name} className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center space-x-2">
-                  <div className="w-4 h-4 flex items-center">
-                    <div className={`w-1 h-4 bg-${method.name === 'Pick-Up' ? 'blue-500' : 'red-400'}`} />
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 flex items-center justify-center">
+                    <div 
+                      className={`w-[3px] h-4 ${
+                        method.name === 'Pick-Up' ? 'bg-blue-500' : 'bg-red-400'
+                      }`} 
+                    />
                   </div>
-                  <span className="text-gray-600">{method.name}</span>
+                  <span className="text-gray-600 font-medium">{method.name}</span>
                 </div>
-                <span className="text-gray-900 font-medium">{method.count}</span>
+                <span className="text-gray-900 tabular-nums">{method.count}</span>
               </div>
               <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
                 <div
-                  className={`h-full ${method.name === 'Pick-Up' ? 'bg-blue-500' : 'bg-red-400'}`}
+                  className={`h-full transition-all duration-500 ${
+                    method.name === 'Pick-Up' ? 'bg-blue-500' : 'bg-red-400'
+                  }`}
                   style={{ width: `${(method.count / total) * 100}%` }}
                 />
               </div>

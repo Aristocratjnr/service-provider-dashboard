@@ -1,8 +1,10 @@
 'use client'
 
+
 import { MetricsCard } from "@/components/metrics-card"
 import { OrdersStatus } from "@/components/order-status"
 import { SalesChart } from "@/components/sales-chart"
+
 import { AreaChartSmall } from "@/components/charts/area-chart"
 import { TopServices } from "@/components/top-services"
 import { Orders } from "@/components/orders"
@@ -11,9 +13,9 @@ import { MethodPreferred } from "@/components/method-preffered"
 
 
 const orderStatusData = [
-  { status: "Delivered", count: 510, percentage: 50, color: "#22c55e" },
-  { status: "In Transit", count: 80, percentage: 25, color: "#3b82f6" },
-  { status: "In Process", count: 78, percentage: 25, color: "#eab308" },
+  { status: "Delivered", count: 510, percentage: 50, color: "#22c55e", patternId: "pattern1" },
+  { status: "In Transit", count: 80, percentage: 25, color: "#3b82f6", patternId: "pattern2" },
+  { status: "In Process", count: 78, percentage: 25, color: "#eab308", patternId: "pattern3" },
 ]
 
 const topIssuesData = [
