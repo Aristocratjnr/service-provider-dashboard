@@ -1,11 +1,8 @@
 'use client'
 
-
 import { MetricsCard } from "@/components/metrics-card"
-
 import { OrdersStatus } from "@/components/order-status"
 import { SalesChart } from "@/components/sales-chart"
-
 import { AreaChartSmall } from "@/components/charts/area-chart"
 import { TopServices } from "@/components/top-services"
 import { Orders } from "@/components/orders"
