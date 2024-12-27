@@ -22,19 +22,19 @@ export default function DashboardSidebar({ children }: LayoutProps) {
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen flex bg-[#F8F9FB]">
+    <div className="min-h-screen flex ">
       {/* Sidebar */}
       <div className="w-[240px] border-r bg-white shadow-lg">
       <div className="w-64 border-r bg-background px-4 py-6 dark:bg-gray-800 dark:border-gray-700 flex flex-col">
         {/* Logo */}
       <div>
-        <Link href="/" className="flex items-center space-x-4">
+        <Link href="/" className="flex items-center space-x-6">
           <Image src="/images/logo.svg" alt="Logo" width={100} height={60} />
         </Link>
       </div><br/>
 
           {/* Navigation */}
-          <nav className="space-y-6">
+          <nav className="space-y-10">
             {links.map(({ name, href, icon: Icon }) => (
               <Link
                 key={name}

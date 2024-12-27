@@ -1,10 +1,7 @@
 'use client'
-
-
 import { MetricsCard } from "@/components/metrics-card"
 import { OrdersStatus } from "@/components/order-status"
 import { SalesChart } from "@/components/sales-chart"
-
 import { AreaChartSmall } from "@/components/charts/area-chart"
 import { TopServices } from "@/components/top-services"
 import { Orders } from "@/components/orders"
@@ -54,11 +51,11 @@ const methodPreferredData = {
 export default function Dashboard() {
   return (
 
-      <div className="space-y-6">
+      <div className="space-y-6" style={{background: 'rgba(161, 222, 247, 0.10)'}}>
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight">Welcome Back!</h1>
-            <p className="text-sm text-muted-foreground">Track your sales and performance</p>
+            <h1 className="text-2xl font-semi-bold tracking-tight">Welcome <span className="text-[#023E8A]">Back!</span></h1>
+            <p className="text-sm text-gray-800">Track your sales and performance</p>
           </div>
           <select className="rounded-md border px-3 py-2 text-sm">
             <option>Filters</option>

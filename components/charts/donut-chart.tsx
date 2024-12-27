@@ -1,5 +1,3 @@
-'use client'
-
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import { formatCurrency } from "@/lib/utils"
 
@@ -14,15 +12,37 @@ interface DonutChartProps {
 
 export function DonutChart({ data, total }: DonutChartProps) {
   return (
-    <div className="relative w-[180px] h-[180px]">
+    <div className="relative w-[140px] h-[180px]">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
+          <Pie
+            data={[{ name: 'stroked', value: 100 }]} 
+            cx="50%"
+            cy="50%"
+            innerRadius={55}
+            outerRadius={65}
+            startAngle={90}
+            endAngle={450}
+            dataKey="value"
+            fill="none"
+          >
+            <Cell
+              stroke="#d1d5db" 
+              strokeWidth={8}
+              strokeDasharray="4 4" 
+              fill="none"
+            />
+          </Pie>
+
+          {/* Foreground Data */}
           <Pie
             data={data}
             cx="50%"
             cy="50%"
-            innerRadius={60}
-            outerRadius={80}
+            innerRadius={55}
+            outerRadius={65}
+            startAngle={90}
+            endAngle={450}
             paddingAngle={0}
             dataKey="value"
           >
@@ -41,4 +61,3 @@ export function DonutChart({ data, total }: DonutChartProps) {
     </div>
   )
 }
-
