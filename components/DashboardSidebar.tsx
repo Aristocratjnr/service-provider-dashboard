@@ -14,7 +14,7 @@ const links = [
   { name: "Overview", href: "/overview", icon: LayoutDashboard },
   { name: "Orders", href: "/orders", icon: ClipboardList },
   { name: "Schedule", href: "/schedule", icon: Calendar },
-  { name: "Pricing", href: "/pricing", icon: DollarSign },
+  { name: "Pricing", href: "/payment", icon: DollarSign },
   { name: "Quick Actions", href: "/quick-actions", icon: Zap },
 ];
 
@@ -42,7 +42,7 @@ export default function DashboardSidebar({ children }: LayoutProps) {
                 className={clsx(
                   "flex items-center space-x-3 px-4 py-2.5 rounded-lg transition-colors duration-200",
                   {
-                    "bg-[#3366FF] text-white": pathname === href,
+                    "bg-[#023E8A] text-white": pathname === href,
                     "text-gray-600 hover:bg-gray-50": pathname !== href,
                   }
                 )}
