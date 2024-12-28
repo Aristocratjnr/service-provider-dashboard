@@ -30,8 +30,8 @@ const generateChartData = (points: number) => {
 }
 
 const methodPreferredData = {
-  startDate: "Aug 30, 2023",
-  endDate: "Aug 31, 2023",
+  startDate: "Aug 30, 2025",
+  endDate: "Aug 31, 2025",
   methods: [
     {
       name: "Pick-Up",
