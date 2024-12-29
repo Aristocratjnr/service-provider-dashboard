@@ -21,9 +21,9 @@ export function MethodPreferred({ startDate, endDate, methods }: MethodPreferred
     <Card className="shadow-sm bg-white">
       <div className="px-6 pt-5 pb-0">
         <div className="space-y-1">
-          <h3 className="text-[15px] font-medium text-gray-900">Method Preferred</h3>
+          <h3 className="text-[15px] font-medium text-gray-500">Method Preferred</h3>
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm font-sans text-gray-500 border border-b border-gray-300 rounded-md">
               {startDate} - {endDate}
             </p>
             <button 

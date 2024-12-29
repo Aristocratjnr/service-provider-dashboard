@@ -18,7 +18,9 @@ export function TopServices({ data }: TopServicesProps) {
   return (
     <Card className="shadow-sm bg-white">
       <CardHeader className="pb-3">
-        <h3 className="text-lg font-medium text-gray-900">Top Issues</h3>
+        <h3 className="text-lg font-bold text-gray-500">Top Issues</h3>
+        <hr className ="border-bottom: 8px solid black; margin: 0; w-96"/>
+
       </CardHeader>
       <CardContent className="px-0">
         <Table>

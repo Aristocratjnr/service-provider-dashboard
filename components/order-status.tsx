@@ -45,8 +45,8 @@ export  function OrdersStatus({
     <Card className="bg-white p-6">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 p-0 pb-6">
         <div>
-          <h3 className="text-xl font-normal text-gray-900">
-            Total Orders <span className="ml-1 text-gray-900">{total}</span>
+          <h3 className="text-xl font-normal text-gray-500">
+            Total Orders <span className="ml-1 text-gray-500">{total}</span>
           </h3>
         </div>
         <Select defaultValue="this-month">

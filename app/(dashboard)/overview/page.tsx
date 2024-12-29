@@ -58,8 +58,8 @@ export default function Dashboard() {
         </div>
        
         <div className="relative">
-          <select className="appearance-none w-full rounded-md border border-cyan-300 pl-8 pr-3 py-2 text-sm">
-            <option>Filters</option>
+          <select className="appearance-none w-full rounded-md text-gray-500 border border-cyan-300 pl-8 pr-3 py-2 text-sm">
+            <option className="text-gray-400">Filters</option>
             <option>Today</option>
             <option>This Week</option>
             <option>This Month</option>

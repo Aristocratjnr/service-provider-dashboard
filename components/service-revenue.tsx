@@ -12,7 +12,7 @@ const data = [
 export function ServiceRevenue() {
   return (
     <Card className="p-6">
-      <h3 className="text-lg font-medium text-gray-900 mb-4">Service Revenue</h3>
+      <h3 className="text-lg font-medium text-gray-500 mb-4">Service Revenue</h3>
       <div className="h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart

@@ -11,7 +11,7 @@ export function Metrics() {
       label: "Packages Used",
       value: "52",
       subLabel: "Last 7 days",
-      color: colors.primary,
+      color: colors.secondary,
       data: Array.from({ length: 20 }, () => ({ value: Math.random() * 100 }))
     },
     {
