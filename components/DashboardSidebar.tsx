@@ -1,61 +1,66 @@
 "use client";
 
-import Image from "next/image";
+import { LayoutDashboard, ClipboardList, Calendar, DollarSign, Zap } from "lucide-react";
 import Link from "next/link";
+import Image from "next/legacy/image";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
-import {
-  ClipboardDocumentListIcon,
-  InboxStackIcon,
-  CalendarIcon,
-  BanknotesIcon,
-} from "@heroicons/react/24/solid";
+interface LayoutProps {
+  children: React.ReactNode;
+}
 
-export default function Sidebar() {
+const links = [
+  { name: "Overview", href: "/overview", icon: LayoutDashboard },
+  { name: "Orders", href: "/orders", icon: ClipboardList },
+  { name: "Schedule", href: "/schedule", icon: Calendar },
+  { name: "Pricing", href: "/payment", icon: DollarSign },
+  { name: "Quick Actions", href: "/quick-actions", icon: Zap },
+];
+
+export default function DashboardSidebar({ children }: LayoutProps) {
   const pathname = usePathname();
 
-  const links = [
-    { name: "Overview", href: "/overview", icon: ClipboardDocumentListIcon },
-    { name: "Orders", href: "/orders", icon: InboxStackIcon },
-    { name: "Schedules", href: "/schedule", icon: CalendarIcon },
-    { name: "Payments", href: "/payment", icon: BanknotesIcon },
-  ];
-
   return (
-    <div className="flex min-h-screen w-64 flex-col border-r bg-white shadow-lg">
-      <div className="mx-auto mb-10 flex p-4 text-lg font-bold">
-        <Image src="/images/logo.svg" width={120} height={85} alt="logo" />
+    <div className="min-h-screen flex ">
+      {/* Sidebar */}
+      <div className="w-[240px] border-r bg-white shadow-lg">
+      <div className="w-64 border-r bg-background px-4 py-6 dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+        {/* Logo */}
+      <div>
+        <Link href="/" className="flex items-center space-y-12">
+          <Image src="/images/logo.svg" alt="Logo" width={100} height={60} />
+        </Link>
+      </div><br/><br/>
+
+          {/* Navigation */}
+          <nav className="space-y-10">
+            {links.map(({ name, href, icon: Icon }) => (
+              <Link
+                key={name}
+                href={href}
+                className={clsx(
+                  "flex items-center space-x-3 px-4 py-2.5 rounded-lg transition-colors duration-200",
+                  {
+                    "bg-[#023E8A] text-white": pathname === href,
+                    "text-gray-600 hover:bg-gray-50": pathname !== href,
+                  }
+                )}
+              >
+                <Icon
+                  className={clsx("w-5 h-5", {
+                    "text-white": pathname === href,
+                    "text-gray-600": pathname !== href,
+                  })}
+                />
+                <span className="font-medium">{name}</span>
+              </Link>
+            ))}
+          </nav>
+        </div>
       </div>
-      <div className="flex-grow">
-        <ul className="space-y-4 p-4 text-lg">
-          {links.map((link) => {
-            const Icon = link.icon;
-            return (
-              <li key={link.name}>
-                <Link
-                  href={link.href}
-                  className={clsx(
-                    "flex items-center gap-3 rounded p-2 transition-colors duration-300 hover:bg-blue-300 hover:text-white",
-                    {
-                      "bg-blue-300 font-semibold text-white":
-                        pathname === link.href,
-                    },
-                  )}
-                >
-                  <Icon
-                    className={clsx("h-5 w-5", {
-                      "text-white": pathname === link.href,
-                      "text-black": pathname !== link.href,
-                    })}
-                  />
-                  {link.name}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      {/* Main Content */}
+      <div className="flex-1">{children}</div>
     </div>
   );
 }
