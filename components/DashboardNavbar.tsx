@@ -1,8 +1,25 @@
-import React from 'react';
-import { Search, Bell, Settings } from 'lucide-react';
+'use client';
+import React from "react";
+import { usePathname } from "next/navigation";
+import { Search, Bell, Settings } from "lucide-react";
 import Image from "next/legacy/image";
 
 const Navbar = () => {
+  const pathname = usePathname();
+
+  const pageName = 
+  pathname === "/pricing"
+    ? "Pricing"
+    : pathname === "/quick-actions"
+    ? "Quick Actions"
+    : pathname === "/orders"
+    ? "Orders"
+    : pathname === "/payment"
+    ? "Payment"
+    : pathname === "/schedule"
+    ? "Schedule"
+    : "Overview";
+
   return (
     <header className="flex items-center justify-between bg-white px-6 py-3 shadow-md">
       {/* Left section with logo and title */}
@@ -17,7 +34,7 @@ const Navbar = () => {
             />
           </div>
         </div>
-        <h1 className="ml-3 text-base font-semibold text-gray-700">Overview</h1>
+        <h1 className="ml-3 text-base font-semibold text-gray-700">{pageName}</h1>
       </div>
 
       {/* Right section with icons and profile */}
