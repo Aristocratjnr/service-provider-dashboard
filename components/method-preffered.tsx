@@ -1,7 +1,6 @@
 'use client'
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { ArrowUpRight } from 'lucide-react'
 
 interface Method {
@@ -20,44 +19,41 @@ export function MethodPreferred({ startDate, endDate, methods }: MethodPreferred
   
   return (
     <Card className="shadow-sm bg-white">
-      <CardHeader className="pb-4">
-        <div className="flex items-center justify-between">
-          <div className="space-y-0.5">
-            <h3 className="text-base font-medium leading-6 text-gray-900">Method Preferred</h3>
+      <div className="px-6 pt-5 pb-0">
+        <div className="space-y-1">
+          <h3 className="text-[15px] font-medium text-gray-900">Method Preferred</h3>
+          <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">
               {startDate} - {endDate}
             </p>
+            <button 
+              className="text-sm text-[#444CE7] hover:text-[#3538CD] font-medium flex items-center"
+            >
+              View detail report
+              <ArrowUpRight className="ml-1 h-4 w-4" />
+            </button>
           </div>
-          <Button 
-            variant="ghost" 
-            className="h-8 text-sm text-blue-600 hover:text-blue-700 font-medium hover:bg-transparent px-0"
-          >
-            View detail report
-            <ArrowUpRight className="ml-1 h-4 w-4" />
-          </Button>
         </div>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
+      </div>
+      <CardContent className="pt-6">
+        <div className="space-y-4">
           {methods.map((method) => (
             <div key={method.name} className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center gap-3">
-                  <div className="w-4 h-4 flex items-center justify-center">
-                    <div 
-                      className={`w-[3px] h-4 ${
-                        method.name === 'Pick-Up' ? 'bg-blue-500' : 'bg-red-400'
-                      }`} 
-                    />
-                  </div>
-                  <span className="text-gray-600 font-medium">{method.name}</span>
+                <div className="flex items-center gap-2">
+                  <div 
+                    className={`w-[3px] h-4 rounded-full ${
+                      method.name === 'Pick-Up' ? 'bg-[#444CE7]' : 'bg-[#F97066]'
+                    }`} 
+                  />
+                  <span className="text-gray-600">{method.name}</span>
                 </div>
                 <span className="text-gray-900 tabular-nums">{method.count}</span>
               </div>
-              <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
+              <div className="h-2.5 w-full bg-gray-50 rounded-full overflow-hidden">
                 <div
                   className={`h-full transition-all duration-500 ${
-                    method.name === 'Pick-Up' ? 'bg-blue-500' : 'bg-red-400'
+                    method.name === 'Pick-Up' ? 'bg-[#444CE7]' : 'bg-[#F97066]'
                   }`}
                   style={{ width: `${(method.count / total) * 100}%` }}
                 />

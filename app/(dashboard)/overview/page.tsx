@@ -15,10 +15,9 @@ const orderStatusData = [
 ];
 
 const topIssuesData = [
-  { name: "Dry cleaning", orders: 12, status: "Running", type: "Service", count: 5 },
-  { name: "Laundry", orders: 8, status: "Running", type: "Service", count: 3 },
-  { name: "Ironing", orders: 3, status: "Running", type: "Service", count: 2 },
-  { name: "Folding", orders: 2, status: "Running", type: "Service", count: 1 },
+  { name: "Dry cleaning", orders: 12, status: "warning", type: "Late delivery", count: 10 },
+  { name: "Laundry", orders: 8, status: "warning", type: "High pricing", count: 15 },
+  { name: "Ironing", orders: 3, status: "warning", type: "Missing Item", count:  2 },
 ];
 
 const generateChartData = (points: number) => {

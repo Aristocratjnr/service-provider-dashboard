@@ -24,9 +24,9 @@ export function TopServices({ data }: TopServicesProps) {
         <Table>
           <TableHeader>
             <TableRow className="hover:bg-transparent">
-              <TableHead className="text-sm font-medium text-gray-500 pl-6">Type of issues</TableHead>
-              <TableHead className="text-sm font-medium text-gray-500">Number of issues</TableHead>
-              <TableHead className="text-sm font-medium text-gray-500 pr-6">Type</TableHead>
+              <TableHead className="text-sm font-medium text-gray-500 pl-6 bg-gray-100 rounded-lg">Type of issues</TableHead>
+              <TableHead className="text-sm font-medium text-gray-500  bg-gray-100 rounded-lg">Number of issues</TableHead>
+              <TableHead className="text-sm font-medium text-gray-500 pr-6  bg-gray-100 rounded-lg">Type</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
