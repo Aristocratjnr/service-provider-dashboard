@@ -9,7 +9,7 @@ export function Metrics() {
   const metrics = [
     {
       label: "Packages Used",
-      value: "53",
+      value: "52",
       subLabel: "Last 7 days",
       color: colors.primary,
       data: Array.from({ length: 20 }, () => ({ value: Math.random() * 100 }))

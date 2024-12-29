@@ -6,7 +6,6 @@ import { AreaChartSmall } from "@/components/charts/area-chart";
 import { TopServices } from "@/components/top-services";
 import { Orders } from "@/components/orders";
 import { MethodPreferred } from "@/components/method-preffered";
-import { FunnelIcon } from '@heroicons/react/24/solid';
 import { FilterIcon } from "lucide-react";
 
 const orderStatusData = [
@@ -58,10 +57,10 @@ export default function Dashboard() {
           </h1>
           <p className="text-sm text-gray-800">Track your sales and performance</p>
         </div>
-        {/* Dropdown with Icon */}
+       
         <div className="relative">
           <select className="appearance-none w-full rounded-md border border-cyan-300 pl-8 pr-3 py-2 text-sm">
-            <option className="text-gray-500 text-lg">Filters</option>
+            <option>Filters</option>
             <option>Today</option>
             <option>This Week</option>
             <option>This Month</option>
@@ -71,17 +70,17 @@ export default function Dashboard() {
       </div>
       <div className="grid gap-6 md:grid-cols-3">
         <MetricsCard
-          title="Packages Used"
+          title="Basic Clean"
           value="53"
           chart={<AreaChartSmall data={generateChartData(12)} color="#22c55e" />}
         />
         <MetricsCard
-          title="Active Orders"
+          title="Event Ready"
           value="123"
           chart={<AreaChartSmall data={generateChartData(12)} color="#3b82f6" />}
         />
         <MetricsCard
-          title="Revenue Growth"
+          title="Semester Essential"
           value="37"
           chart={<AreaChartSmall data={generateChartData(12)} color="#f59e0b" />}
         />

@@ -10,11 +10,14 @@ export function MetricsCard({ title, value, chart }: MetricsCardProps) {
   return (
     <Card className="overflow-hidden bg-white shadow-sm">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <div className="text-sm font-medium text-gray-500">{title}</div>
-        <div className="text-2xl font-semibold">{value}</div>
+      <div className="flex flex-col gap-1">
+      <sub className="text-3xl font-semi-bold text-gray-500">{value}</sub>
+        <div className="text-sm text-gray-500 transform translate-x-12">{title}
+        </div>
+        </div>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="h-[80px] bg-[#F8FAFC]">{chart}</div>
+        <div className="h-[100px] mt-4 bg-[#F8FAFC]">{chart}</div>
       </CardContent>
     </Card>
   )
