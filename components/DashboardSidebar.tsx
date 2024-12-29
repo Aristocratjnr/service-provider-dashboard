@@ -2,7 +2,7 @@
 
 import { LayoutDashboard, ClipboardList, Calendar, DollarSign, Zap } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
