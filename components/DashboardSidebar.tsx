@@ -28,7 +28,7 @@ export default function DashboardSidebar({ children }: LayoutProps) {
       <div className="w-64 border-r border-gray-300 px-4 py-6 dark:bg-gray-800 dark:border-gray-700 flex flex-col">
         {/* Logo */}
       <div>
-        <Link href="/" className="flex items-center space-y-12">
+        <Link href="/" className="flex items-center space-x-4">
           <Image src="/images/logo.svg" alt="Logo" width={100} height={60} />
         </Link>
       </div><br/><br/>
