@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 import DashboardSidebar from "@/components/DashboardSidebar";
-import DashboardNavbar from "@/components/DashboardNavbar"
+import DashboardNavbar from "@/components/DashboardNavbar";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+// const geistSans = localFont({
+//   src: "./fonts/GeistVF.woff",
+//   variable: "--font-geist-sans",
+//   weight: "100 900",
+// });
+// const geistMono = localFont({
+//   src: "./fonts/GeistMonoVF.woff",
+//   variable: "--font-geist-mono",
+//   weight: "100 900",
+// });
 
 export const metadata: Metadata = {
   title: "TuLaundry",
@@ -28,15 +28,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-      <div className="flex">
-      <DashboardSidebar children={undefined} />
-      <div className="flex-1 flex flex-col min-h-screen">
-        <DashboardNavbar />
-        <main className="p-1 bg-gray-100 flex-grow">{children}</main>
-      </div>
-    </div>
-    </body>
+        <div className="flex">
+          <DashboardSidebar />
+          <div className="flex min-h-screen flex-1 flex-col">
+            <DashboardNavbar />
+            <main className="flex-grow bg-white">{children}</main>
+          </div>
+        </div>
+      </body>
     </html>
-   
   );
 }
