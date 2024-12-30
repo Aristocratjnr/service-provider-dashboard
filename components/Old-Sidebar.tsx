@@ -27,7 +27,7 @@ export default function Sidebar() {
         <Image src="/images/logo.svg" width={120} height={85} alt="logo" />
       </div>
       <div className="flex-grow">
-        <ul className="space-y-10 p-4 text-lg">
+        <ul className="space-y-4 p-4 text-lg">
           {links.map((link) => {
             const Icon = link.icon;
             return (
