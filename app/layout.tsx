@@ -32,7 +32,7 @@ export default function RootLayout({
       <DashboardSidebar children={undefined} />
       <div className="flex-1 flex flex-col min-h-screen">
         <DashboardNavbar />
-        <main className="p-1 bg-gray-100 flex-grow">{children}</main>
+        <main className="p-1 bg-white flex-grow">{children}</main>
       </div>
     </div>
     </body>

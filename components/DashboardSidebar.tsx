@@ -24,8 +24,8 @@ export default function DashboardSidebar({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex ">
       {/* Sidebar */}
-      <div className="w-[240px] border-r bg-white shadow-lg">
-      <div className="w-64 border-r bg-background px-4 py-6 dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+      <div className="w-[240px] border-r border-gray-300 shadow-lg">
+      <div className="w-64 border-r border-gray-300 px-4 py-6 dark:bg-gray-800 dark:border-gray-700 flex flex-col">
         {/* Logo */}
       <div>
         <Link href="/" className="flex items-center space-y-12">
