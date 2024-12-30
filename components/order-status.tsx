@@ -1,6 +1,9 @@
+'use client'
+
 import React from 'react';
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { TrendingUp, Box, Clock, Check } from 'lucide-react';
 
 interface OrderStatus {
   status: string;
@@ -8,6 +11,10 @@ interface OrderStatus {
   percentage: number;
   color: string;
   patternId: string;
+  trend?: {
+    value: number;
+    direction: 'up' | 'down';
+  };
 }
 
 interface OrdersStatusProps {
@@ -15,42 +22,59 @@ interface OrdersStatusProps {
   total?: number;
 }
 
-export  function OrdersStatus({ 
+export function OrdersStatus({ 
   total = 192,
   data = [
     {
       status: "Delivered",
       count: 510,
       percentage: 50,
-      color: "#86efac",
-      patternId: "delivered-pattern"
+      color: "#16A34A",
+      patternId: "delivered-pattern",
+      trend: { value: 3, direction: 'up' }
     },
     {
       status: "In Transit",
       count: 80,
       percentage: 25,
-      color: "#93c5fd",
-      patternId: "transit-pattern"
+      color: "#2563EB",
+      patternId: "transit-pattern",
+      trend: { value: 2, direction: 'down' }
     },
     {
       status: "In Process",
       count: 78,
       percentage: 25,
-      color: "#fcd34d",
-      patternId: "process-pattern"
+      color: "#EAB308",
+      patternId: "process-pattern",
+      trend: { value: 4, direction: 'up' }
     }
   ]
 }: OrdersStatusProps) {
+  const getStatusIcon = (status: string) => {
+    switch(status) {
+      case 'Delivered': return <Check className="h-4 w-4" />;
+      case 'In Transit': return <TrendingUp className="h-4 w-4" />;
+      case 'In Process': return <Clock className="h-4 w-4" />;
+      default: return <Box className="h-4 w-4" />;
+    }
+  };
+
   return (
-    <Card className="bg-white p-6">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 p-0 pb-6">
-        <div>
-          <h3 className="text-xl font-normal text-gray-500">
-            Total Orders <span className="ml-1 text-gray-500">{total}</span>
+    <Card className="bg-white shadow-lg hover:shadow-xl transition-all duration-300">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 p-4 border-b border-gray-100">
+        <div className="space-y-1">
+          <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+            <Box className="h-5 w-5 text-blue-600" />
+            Orders Overview
           </h3>
+          <p className="text-xs text-gray-500">
+            Total Orders: <span className="font-medium text-gray-900">{total.toLocaleString()}</span>
+          </p>
         </div>
+        
         <Select defaultValue="this-month">
-          <SelectTrigger className="h-9 w-[130px] border-gray-200 bg-white text-sm font-normal">
+          <SelectTrigger className="h-8 w-[120px] border-gray-200 bg-white text-xs font-medium hover:border-gray-300 transition-colors">
             <SelectValue placeholder="This month" />
           </SelectTrigger>
           <SelectContent>
@@ -59,38 +83,57 @@ export  function OrdersStatus({
           </SelectContent>
         </Select>
       </CardHeader>
-      <CardContent className="p-0">
-        <div className="flex justify-between">
-          <div className="space-y-6">
+
+      <CardContent className="p-4">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+          <div className="space-y-2 flex-1 w-full lg:w-auto">
             {data.map((status) => (
-              <div key={status.status} className="flex items-center gap-4">
-                <div className="relative">
+              <div key={status.status} 
+                className="p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center justify-center w-6 h-6 rounded-lg"
+                      style={{ backgroundColor: `${status.color}15` }}>
+                      <div className="text-xs" style={{ color: status.color }}>
+                        {getStatusIcon(status.status)}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-gray-900">
+                        {status.status}
+                      </p>
+                      <p className="text-[10px] text-gray-500">
+                        {status.percentage}% of total
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-semibold text-gray-900">
+                      {status.count.toLocaleString()}
+                    </p>
+                    {status.trend && (
+                      <p className="text-[10px] font-medium" style={{ color: status.color }}>
+                        {status.trend.direction === 'up' ? '↑' : '↓'} {status.trend.value}% vs last month
+                      </p>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="mt-1 h-1 w-full bg-gray-100 rounded-full overflow-hidden">
                   <div
-                    className="h-3 w-8"
+                    className="h-full transition-all duration-500 rounded-full"
                     style={{ 
-                      background: `repeating-linear-gradient(
-                        -45deg,
-                        ${status.color},
-                        ${status.color} 2px,
-                        transparent 2px,
-                        transparent 6px
-                      )`
+                      width: `${status.percentage}%`,
+                      backgroundColor: status.color,
+                      boxShadow: `0 0 4px ${status.color}40`
                     }}
                   />
-                  <div className="absolute bottom-0 h-[1px] w-full bg-gray-300" />
-                </div>
-                <div className="min-w-[140px]">
-                  <p className="text-sm font-normal text-gray-900">
-                    {status.status} ({status.percentage}%)
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-900">{status.count}</p>
                 </div>
               </div>
             ))}
           </div>
-          <div className="relative flex h-[160px] w-[160px] items-center justify-center">
+
+          <div className="relative flex h-[120px] w-[120px] lg:h-[150px] lg:w-[150px] items-center justify-center">
             <svg className="h-full w-full -rotate-90" viewBox="0 0 100 100">
               <defs>
                 {data.map((status) => (
@@ -104,7 +147,7 @@ export  function OrdersStatus({
                     <path
                       d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2"
                       stroke={status.color}
-                      strokeWidth="1"
+                      strokeWidth="1.5"
                     />
                   </pattern>
                 ))}
@@ -124,13 +167,14 @@ export  function OrdersStatus({
                     strokeWidth="20"
                     strokeDasharray={`${status.percentage} 100`}
                     strokeDashoffset={-offset}
+                    className="transition-all duration-500"
                   />
                 );
               })}
             </svg>
-            <div className="absolute text-center">
-              <div className="text-2xl font-semibold text-gray-900">100%</div>
-              <div className="text-sm text-gray-500">Data</div>
+            <div className="absolute text-center bg-white p-2 rounded-full shadow-sm">
+              <div className="text-lg font-bold text-gray-900">100%</div>
+              <div className="text-xs font-medium text-gray-500">Complete</div>
             </div>
           </div>
         </div>
@@ -138,3 +182,4 @@ export  function OrdersStatus({
     </Card>
   );
 }
+

@@ -15,9 +15,9 @@ const orderStatusData = [
 ];
 
 const topIssuesData = [
-  { name: "Dry cleaning", orders: 12, status: "warning", type: "Late delivery", count: 10 },
-  { name: "Laundry", orders: 8, status: "warning", type: "High pricing", count: 15 },
-  { name: "Ironing", orders: 3, status: "warning", type: "Missing Item", count:  2 },
+  { name: "Dry cleaning", orders: 12, status: "warning", type: "Late delivery", count: 10, trend: { value: 5, direction: 'up' as 'up' } },
+  { name: "Laundry", orders: 8, status: "warning", type: "High pricing", count: 15, trend: { value: 3, direction: 'down' as 'down' } },
+  { name: "Ironing", orders: 3, status: "warning", type: "Missing Item", count:  2, trend: { value: 1, direction: 'up' as 'up' } },
 ];
 
 const generateChartData = (points: number) => {
@@ -71,17 +71,17 @@ export default function Dashboard() {
         <MetricsCard
           title="Basic Clean"
           value="53"
-          chart={<AreaChartSmall data={generateChartData(12)} color="#22c55e" />}
+          chart={<AreaChartSmall data={generateChartData(12)} color="#22c55e" label={""} />}
         />
         <MetricsCard
           title="Event Ready"
           value="123"
-          chart={<AreaChartSmall data={generateChartData(12)} color="#3b82f6" />}
+          chart={<AreaChartSmall data={generateChartData(12)} color="#3b82f6" label={""} />}
         />
         <MetricsCard
           title="Semester Essential"
           value="37"
-          chart={<AreaChartSmall data={generateChartData(12)} color="#f59e0b" />}
+          chart={<AreaChartSmall data={generateChartData(12)} color="#f59e0b" label={""} />}
         />
       </div>
       <div className="grid gap-6 md:grid-cols-2">

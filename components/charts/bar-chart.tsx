@@ -13,7 +13,7 @@ interface BarChartProps {
 
 export function BarChartComponent({ data }: BarChartProps) {
   return (
-    <div className="h-[460px] mt-4">
+    <div className="h-[350px] mt-4">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={data} margin={{ top: 10, right: 20, left: 20, bottom: 10 }} barCategoryGap="20%">
           <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
