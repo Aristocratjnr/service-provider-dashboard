@@ -24,7 +24,13 @@ export default function Sidebar() {
   return (
     <div className="flex min-h-screen w-64 flex-col border-r bg-white shadow-lg">
       <div className="mx-auto mb-10 flex p-4 text-lg font-bold">
-        <Image src="/images/logo.svg" width={120} height={85} alt="logo" />
+        <Image
+          src="/images/logo.svg"
+          width={120}
+          height={85}
+          alt="logo"
+          priority
+        />
       </div>
       <div className="flex-grow">
         <ul className="space-y-10 p-4 text-lg">
@@ -38,13 +44,14 @@ export default function Sidebar() {
                     "flex items-center gap-3 rounded p-2 transition-colors duration-300 hover:bg-blue-300 hover:text-white",
                     {
                       "bg-blue-300 font-semibold text-white":
-                        pathname === link.href,
+                        pathname.startsWith(link.href) && link.href !== "/",
                     },
                   )}
                 >
                   <Icon
                     className={clsx("h-5 w-5", {
-                      "text-white": pathname === link.href,
+                      "text-white":
+                        pathname.startsWith(link.href) && link.href !== "/",
                       "text-black": pathname !== link.href,
                     })}
                   />
