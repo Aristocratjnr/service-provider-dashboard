@@ -11,7 +11,7 @@ interface OrdersNavProps {
 export default function OrdersNav({ totalOrders = 1135 }: OrdersNavProps) {
   const tabs = [
     { value: "all", label: "All" },
-    { value: "pending", label: "Pending" },
+    { value: "pending", label: "Pending", href: "/orders/pending" },
     { value: "received", label: "Received" },
     { value: "in-process", label: "In Process" },
     { value: "in-transit", label: "In Transit" },
@@ -25,6 +25,7 @@ export default function OrdersNav({ totalOrders = 1135 }: OrdersNavProps) {
           {tabs.map((tab) => (
             <TabsTrigger
               key={tab.value}
+              // href={tab.href}
               value={tab.value}
               className={cn(
                 "relative h-10 rounded-none bg-transparent px-4 font-normal text-muted-foreground data-[state=active]:text-primary data-[state=active]:shadow-none",

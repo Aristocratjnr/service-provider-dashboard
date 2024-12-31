@@ -1,11 +1,9 @@
-import Navlinks from "@/components/orders/Navlinks";
-import OrderToolbar from "@/components/orders/OrderToolbar";
+import OrderTable from "@/components/orders/OrderTable";
 
-export default function page() {
+export default function OrderPage() {
   return (
     <div className="mt-5">
-      <Navlinks />
-      <OrderToolbar />
+      <OrderTable />
     </div>
   );
 }
