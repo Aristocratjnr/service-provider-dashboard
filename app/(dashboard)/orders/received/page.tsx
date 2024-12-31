@@ -1,7 +1,7 @@
-export default function OrdersReceivedPage() {
-  return (
-    <div>
-      <h1>Orders Received Page</h1>
-    </div>
-  );
+import { getReceivedOrders } from "@/lib/orderAPI";
+import OrderManagement from "@/components/orders/OrderManagement";
+
+export default async function ReceivedOrdersPage() {
+  const orders = await getReceivedOrders();
+  return <OrderManagement orders={orders} />;
 }

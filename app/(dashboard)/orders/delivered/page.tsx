@@ -1,7 +1,7 @@
-export default function OrdersDeliveredPage() {
-  return (
-    <div>
-      <h1>OrdersDeliveredPage</h1>
-    </div>
-  );
+import { getDeliveredOrders } from "@/lib/orderAPI";
+import OrderManagement from "@/components/orders/OrderManagement";
+
+export default async function DeliveredOrdersPage() {
+  const orders = await getDeliveredOrders();
+  return <OrderManagement orders={orders} />;
 }

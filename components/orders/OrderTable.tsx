@@ -1,81 +1,55 @@
-"use client";
+import React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Card, CardContent } from "@/components/ui/card";
+import { Order } from "@/types/order";
 
-import React, { useState } from "react";
-import { Table } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-
-interface Order {
-  id: string;
-  date: string;
-  customer: string;
-  service: string;
-  status: string;
-  details: {
-    receivedBy: string;
-    addOns: string;
-    totalAmount: number;
-    paymentMethod: string;
-    courier: {
-      name: string;
-      number: string;
-    };
-  };
+interface OrderTableProps {
+  orders: Order[];
+  onSelectOrder: (order: Order) => void;
+  selectedOrderId?: string;
 }
 
-const OrderManagement = () => {
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
-
-  const orders = [
-    {
-      id: "#3567TL",
-      date: "Oct 23,2024",
-      customer: "Allison Mango",
-      service: "Laundry",
-      status: "Delivered",
-      details: {
-        receivedBy: "Allison Mango",
-        addOns: "Stain Treatment",
-        totalAmount: 65,
-        paymentMethod: "Cash",
-        courier: {
-          name: "John Doe",
-          number: "+233 20 728 5701",
-        },
-      },
-    },
-    // Add more orders as needed
-  ];
-
+export const OrderTable: React.FC<OrderTableProps> = ({
+  orders,
+  onSelectOrder,
+  selectedOrderId,
+}) => {
   return (
-    <div className="flex h-screen gap-6 p-4">
-      {/* Left side - Table */}
-      <div className="w-2/3">
+    <Card>
+      <CardContent>
         <Table>
-          <thead>
-            <tr className="bg-gray-50">
-              <th className="p-3">Order IDs</th>
-              <th className="p-3">Date</th>
-              <th className="p-3">Customer</th>
-              <th className="p-3">Services</th>
-              <th className="p-3">Status</th>
-            </tr>
-          </thead>
-          <tbody>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="text-center">Order IDs</TableHead>
+              <TableHead className="text-center">Date</TableHead>
+              <TableHead className="text-center">Customer</TableHead>
+              <TableHead className="text-center">Services</TableHead>
+              <TableHead className="text-center">Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {orders.map((order) => (
-              <tr
+              <TableRow
                 key={order.id}
-                onClick={() => setSelectedOrder(order)}
-                className={`cursor-pointer hover:bg-gray-50 ${
-                  selectedOrder?.id === order.id ? "bg-blue-50" : ""
+                onClick={() => onSelectOrder(order)}
+                className={`cursor-pointer hover:bg-muted/50 ${
+                  selectedOrderId === order.id ? "bg-muted" : ""
                 }`}
               >
-                <td className="p-3">{order.id}</td>
-                <td className="p-3">{order.date}</td>
-                <td className="p-3">{order.customer}</td>
-                <td className="p-3">{order.service}</td>
-                <td className="p-3">
+                <TableCell className="text-center">{order.id}</TableCell>
+                <TableCell className="text-center">{order.date}</TableCell>
+                <TableCell className="text-center">{order.customer}</TableCell>
+                <TableCell className="text-center">{order.service}</TableCell>
+                <TableCell className="text-center">
                   <span
-                    className={`rounded-full px-2 py-1 text-sm ${
+                    className={`rounded-full px-2 py-1 text-xs font-medium ${
                       order.status === "Delivered"
                         ? "bg-green-100 text-green-800"
                         : order.status === "In Transit"
@@ -85,64 +59,12 @@ const OrderManagement = () => {
                   >
                     {order.status}
                   </span>
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
+          </TableBody>
         </Table>
-      </div>
-
-      {/* Right side - Details */}
-      <div className="w-1/3">
-        <Card>
-          <CardHeader>
-            <CardTitle>
-              {selectedOrder
-                ? `Order Details: ${selectedOrder.id}`
-                : "No Order Selected"}
-            </CardTitle>
-          </CardHeader>
-          {selectedOrder ? (
-            <CardContent>
-              <div className="space-y-4">
-                <div>
-                  <h3 className="font-medium">Received by</h3>
-                  <p>{selectedOrder.details.receivedBy}</p>
-                </div>
-                <div>
-                  <h3 className="font-medium">Service</h3>
-                  <p>{selectedOrder.service}</p>
-                </div>
-                <div>
-                  <h3 className="font-medium">Add-ons</h3>
-                  <p>{selectedOrder.details.addOns}</p>
-                </div>
-                <div>
-                  <h3 className="font-medium">Total Amount</h3>
-                  <p>${selectedOrder.details.totalAmount}</p>
-                </div>
-                <div>
-                  <h3 className="font-medium">Payment Method</h3>
-                  <p>{selectedOrder.details.paymentMethod}</p>
-                </div>
-                <div>
-                  <h3 className="font-medium">Courier Information</h3>
-                  <p>Name: {selectedOrder.details.courier.name}</p>
-                  <p>Number: {selectedOrder.details.courier.number}</p>
-                </div>
-              </div>
-            </CardContent>
-          ) : (
-            <CardContent>
-              <p className="text-gray-500">
-                Select an order to view its details
-              </p>
-            </CardContent>
-          )}
-        </Card>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
-
-export default OrderManagement;

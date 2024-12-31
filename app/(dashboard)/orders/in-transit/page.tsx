@@ -1,7 +1,7 @@
-export default function OrdersInTransitPage() {
-  return (
-    <div>
-      <h1>OrdersInTransitPage</h1>
-    </div>
-  );
+import { getInTransitOrders } from "@/lib/orderAPI";
+import OrderManagement from "@/components/orders/OrderManagement";
+
+export default async function InTransitOrdersPage() {
+  const orders = await getInTransitOrders();
+  return <OrderManagement orders={orders} />;
 }
