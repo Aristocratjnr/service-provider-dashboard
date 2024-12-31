@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { usePathname } from "next/navigation";
 import { Search, Bell, Settings } from "lucide-react";
@@ -7,18 +8,14 @@ import Image from "next/legacy/image";
 const Navbar = () => {
   const pathname = usePathname();
 
-  const pageName =
-    pathname === "/pricing"
-      ? "Pricing"
-      : pathname === "/quick-actions"
-        ? "Quick Actions"
-        : pathname === "/orders"
-          ? "Orders"
-          : pathname === "/payment"
-            ? "Payment"
-            : pathname === "/schedule"
-              ? "Schedule"
-              : "Overview";
+  const pageName = React.useMemo(() => {
+    if (pathname.startsWith("/orders")) return "Orders";
+    if (pathname === "/pricing") return "Pricing";
+    if (pathname === "/quick-actions") return "Quick Actions";
+    if (pathname === "/payment") return "Payment";
+    if (pathname === "/schedule") return "Schedule";
+    return "Overview";
+  }, [pathname]);
 
   return (
     <header className="flex items-center justify-between bg-white px-6 py-3 shadow-md">
