@@ -193,45 +193,45 @@ export default function CalendarApp() {
             <Button variant="outline" size="sm" className="bg-transparent font-bold text-gray-500 hover:bg-gray-100 rounded-full">
               Today
             </Button>
-            <div className="flex items-center justify-center gap-4">
-      <Button 
-        variant="ghost" 
-        size="icon" 
-        className="rounded-full w-8 h-8 bg-white border border-gray-100 shadow-sm hover:bg-gray-50"
-      >
-        <ChevronLeft className="h-4 w-4 text-gray-400" />
-      </Button>
-      <span className="text-sm text-gray-500 min-w-[90px]  text-center">
-        May 21 - 26, 2045
-      </span>
-      <Button 
-        variant="ghost" 
-        size="icon" 
-        className="rounded-full w-8 h-8 bg-white border border-gray-100 shadow-sm hover:bg-gray-50"
-      >
-        <ChevronRight className="h-4 w-4 text-gray-400" />
-      </Button>
-    </div>
+                  <div className="flex items-center justify-center gap-4">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full w-8 h-8 bg-white border border-gray-100 shadow-sm hover:bg-gray-50"
+            >
+              <ChevronLeft className="h-4 w-4 text-gray-400" />
+            </Button>
+            <span className="text-sm font-bold text-gray-500 hover:bg-gray-100  min-w-[90px]  text-center">
+              May 21 - 26, 2045
+            </span>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full w-8 h-8 bg-white border border-gray-100 shadow-sm hover:bg-gray-50"
+            >
+              <ChevronRight className="h-4 w-4 text-gray-400" />
+            </Button>
           </div>
-          <div className="inline-flex items-center rounded-[100px] border border-[#E5E7EB] bg-white p-1">
-            <Button variant="ghost" size="sm" className="text-gray-600 hover:bg-gray-50 px-4">Day</Button>
-            <Button variant="ghost" size="sm" className="text-blue-600 bg-blue-50 hover:bg-blue-100 px-4">Week</Button>
-            <Button variant="ghost" size="sm" className="text-gray-600 hover:bg-gray-50 px-4">Month</Button>
-            <Button variant="ghost" size="sm" className="text-gray-600 hover:bg-gray-50 px-4">Year</Button>
+          </div>
+          <div className="inline-flex items-center rounded-[100px] border border-b-2 border-[#E5E7EB] bg-white p-1">
+            <Button variant="ghost" size="sm" className="text-gray-500 font-bold  hover:bg-gray-50 px-4">Day</Button>
+            <Button variant="ghost" size="sm" className="text-gray-500 font-extrabold  bg-blue-50 hover:bg-blue-100 px-4">Week</Button>
+            <Button variant="ghost" size="sm" className="text-gray-500 font-bold  hover:bg-gray-50 px-4">Month</Button>
+            <Button variant="ghost" size="sm" className="text-gray-500 font-bold  hover:bg-gray-50 px-4">Year</Button>
           </div>
         </div>
 
         {/* Calendar Header */}
         <div className="grid grid-cols-8 gap-4">
           <div className="h-12 flex items-center justify-center">
-            <Clock className="h-5 w-4 text-gray-400" />
+            <Clock className="h-5 w-4 mr-20 text-gray-400" />
           </div>
           {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day, index) => (
             <div key={day} className="text-sm py-2">
-              <div className="font-medium text-gray-800 flex items-center gap-2">
+              <div className=" text-gray-500 font-semi-bold flex items-center gap-2">
                 {day}
                 {index === 0 && (
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-800 animate-pulse"></div>
                 )}
               </div>
               <div className="text-gray-500 text-xs mt-0.5">{12 + index}</div>
