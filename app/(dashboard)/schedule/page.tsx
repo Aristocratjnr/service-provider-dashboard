@@ -79,7 +79,7 @@ const events: Event[] = [
     participants: 2,
     column: 7,
     row: 2,
-    height: 3,
+    height: 5,
   },
   {
     id: '6',
@@ -242,11 +242,11 @@ export default function CalendarApp() {
 
      {/* Calendar Grid */}
 <div className="flex-1 overflow-visible relative">
-  <div className="grid grid-cols-[80px_1fr] gap-0" style={{ height: '450px' }}>
+  <div className="grid grid-cols-[80px_1fr] gap-2" style={{ height: '450px' }}>
     {/* Time Slots */}
     <div className="col-span-1 bg-white">
-      {Array.from({ length: 8 }, (_, i) => (
-        <div key={i} className="h-[80px] relative">
+      {Array.from({ length: 11 }, (_, i) => (
+        <div key={i} className="h-[90px] relative">
           <span className="absolute top-0 right-4 text-[11px] text-gray-500 font-medium border-b border-gray-200">
             {String(9 + i).padStart(2, '0')}:00
           </span>
@@ -262,7 +262,7 @@ export default function CalendarApp() {
             <div 
               key={hourIndex} 
               className={cn(
-                "h-[50px] border-t border-gray-100",
+                "h-[120px] w-[300px] border-t border-gray-200",
                 hourIndex === 0 && "border-t-0"
               )}
             />
