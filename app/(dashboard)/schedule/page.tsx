@@ -14,8 +14,6 @@ interface Event {
   color: string
   participants: number
   column: number
-  row: number
-  height: number
   connected?: {
     direction: 'right' | 'down'
     color: string
@@ -31,8 +29,6 @@ const events: Event[] = [
     color: 'green',
     participants: 1,
     column: 2,
-    row: 0,
-    height: 2,
     connected: { direction: 'right', color: 'orange' },
   },
   {
@@ -43,8 +39,6 @@ const events: Event[] = [
     color: 'orange',
     participants: 2,
     column: 2,
-    row: 2,
-    height: 2,
     connected: { direction: 'down', color: 'orange' },
   },
   {
@@ -55,8 +49,6 @@ const events: Event[] = [
     color: 'red',
     participants: 2,
     column: 4,
-    row: 2,
-    height: 3,
     connected: { direction: 'right', color: 'yellow' },
   },
   {
@@ -67,8 +59,6 @@ const events: Event[] = [
     color: 'yellow',
     participants: 2,
     column: 5,
-    row: 2,
-    height: 2.5,
   },
   {
     id: '5',
@@ -78,8 +68,6 @@ const events: Event[] = [
     color: 'orange',
     participants: 2,
     column: 7,
-    row: 2,
-    height: 5,
   },
   {
     id: '6',
@@ -89,8 +77,6 @@ const events: Event[] = [
     color: 'purple',
     participants: 2,
     column: 3,
-    row: 4,
-    height: 3,
     connected: { direction: 'right', color: 'purple' },
   },
   {
@@ -101,8 +87,6 @@ const events: Event[] = [
     color: 'blue',
     participants: 2,
     column: 6,
-    row: 5,
-    height: 3,
   },
   {
     id: '8',
@@ -112,10 +96,7 @@ const events: Event[] = [
     color: 'blue',
     participants: 2,
     column: 4,
-    row: 6,
-    height: 2.5,
   },
-
   {
     id: '9',
     title: 'The Amazing Hubble',
@@ -124,11 +105,7 @@ const events: Event[] = [
     color: 'purple',
     participants: 3,
     column: 2,
-    row: 8,
-    height: 4,
   },
-
-
 ]
 
 const colorMap: { [key: string]: { bg: string; border: string; text: string; hover: string } } = {
@@ -174,50 +151,50 @@ export default function CalendarApp() {
   const [currentTime, setCurrentTime] = React.useState(new Date())
 
   React.useEffect(() => {
-    const timer = setInterval(() => setCurrentTime(new Date()), 60000)
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000)
     return () => clearInterval(timer)
   }, [])
 
   const getCurrentTimePosition = () => {
     const hours = currentTime.getHours()
     const minutes = currentTime.getMinutes()
-    return ((hours - 9) * 100) + ((minutes / 60) * 100)
+    return ((hours - 9) * 120) + ((minutes / 60) * 120)
   }
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col bg-white">
       {/* Calendar Controls */}
-      <div className="border-b border-gray-200 px-6 py-6 sticky top-0 bg-white z-20">
+      <div className="border-b border-gray-200 px-6 py-4 sticky top-0 bg-white z-20">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <Button variant="outline" size="sm" className="bg-transparent font-bold text-gray-500 hover:bg-gray-100 rounded-full">
               Today
             </Button>
-                  <div className="flex items-center justify-center gap-4">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="rounded-full w-8 h-8 bg-white border border-gray-100 shadow-sm hover:bg-gray-50"
-            >
-              <ChevronLeft className="h-4 w-4 text-gray-400" />
-            </Button>
-            <span className="text-sm font-bold text-gray-500 hover:bg-gray-100  min-w-[90px]  text-center">
-              May 21 - 26, 2045
-            </span>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="rounded-full w-8 h-8 bg-white border border-gray-100 shadow-sm hover:bg-gray-50"
-            >
-              <ChevronRight className="h-4 w-4 text-gray-400" />
-            </Button>
-          </div>
+            <div className="flex items-center justify-center gap-4">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="rounded-full w-8 h-8 bg-white border border-gray-100 shadow-sm hover:bg-gray-50"
+              >
+                <ChevronLeft className="h-4 w-4 text-gray-400" />
+              </Button>
+              <span className="text-sm font-bold text-gray-500 hover:bg-gray-100 min-w-[90px] text-center">
+                May 21 - 26, 2045
+              </span>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="rounded-full w-8 h-8 bg-white border border-gray-100 shadow-sm hover:bg-gray-50"
+              >
+                <ChevronRight className="h-4 w-4 text-gray-400" />
+              </Button>
+            </div>
           </div>
           <div className="inline-flex items-center rounded-[100px] border border-b-2 border-[#E5E7EB] bg-white p-1">
-            <Button variant="ghost" size="sm" className="text-gray-500 font-bold  hover:bg-gray-50 px-4">Day</Button>
-            <Button variant="ghost" size="sm" className="text-gray-500 font-extrabold  bg-blue-50 hover:bg-blue-100 px-4">Week</Button>
-            <Button variant="ghost" size="sm" className="text-gray-500 font-bold  hover:bg-gray-50 px-4">Month</Button>
-            <Button variant="ghost" size="sm" className="text-gray-500 font-bold  hover:bg-gray-50 px-4">Year</Button>
+            <Button variant="ghost" size="sm" className="text-gray-500 font-bold hover:bg-gray-50 px-4">Day</Button>
+            <Button variant="ghost" size="sm" className="text-gray-500 font-extrabold bg-blue-50 hover:bg-blue-100 px-4">Week</Button>
+            <Button variant="ghost" size="sm" className="text-gray-500 font-bold hover:bg-gray-50 px-4">Month</Button>
+            <Button variant="ghost" size="sm" className="text-gray-500 font-bold hover:bg-gray-50 px-4">Year</Button>
           </div>
         </div>
 
@@ -228,7 +205,7 @@ export default function CalendarApp() {
           </div>
           {["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day, index) => (
             <div key={day} className="text-sm py-2">
-              <div className=" text-gray-500 font-semi-bold flex items-center gap-2">
+              <div className="text-gray-500 font-semi-bold flex items-center gap-2">
                 {day}
                 {index === 0 && (
                   <div className="w-1.5 h-1.5 rounded-full bg-blue-800 animate-pulse"></div>
@@ -240,88 +217,98 @@ export default function CalendarApp() {
         </div>
       </div>
 
-     {/* Calendar Grid */}
-<div className="flex-1 overflow-visible relative">
-  <div className="grid grid-cols-[80px_1fr] gap-2" style={{ height: '450px' }}>
-    {/* Time Slots */}
-    <div className="col-span-1 bg-white">
-      {Array.from({ length: 11 }, (_, i) => (
-        <div key={i} className="h-[90px] relative">
-          <span className="absolute top-0 right-4 text-[11px] text-gray-500 font-medium border-b border-gray-200">
-            {String(9 + i).padStart(2, '0')}:00
-          </span>
-        </div>
-      ))}
-    </div>
-
-    {/* Calendar Cells */}
-    <div className="grid grid-cols-7 col-span-1">
-      {Array.from({ length: 6 }, (_, dayIndex) => (
-        <div key={dayIndex} className="relative border-l border-gray-200">
-          {Array.from({ length: 8 }, (_, hourIndex) => (
-            <div 
-              key={hourIndex} 
-              className={cn(
-                "h-[120px] w-[300px] border-t border-gray-200",
-                hourIndex === 0 && "border-t-0"
-              )}
-            />
-          ))}
-        </div>
-      ))}
-    </div>
-
-    {/* Events Layer */}
-    <div className="absolute inset-0 col-start-0 col-span-7">
-      {events.map((event) => (
-        <div
-          key={event.id}
-          className={cn(
-            "absolute p-3 rounded-lg transition-colors duration-200 border-b-2",
-            colorMap[event.color].bg,
-            colorMap[event.color].border,
-            colorMap[event.color].hover,
-            "cursor-pointer group"
-          )}
-          style={{
-            left: `${(event.column - 1) * (100 / 7)}%`,
-            top: `${event.row * 50}px`,
-            width: `calc(${100 / 7}% - 8px)`,
-            height: `${event.height * 50}px`,
-            margin: '0 4px'
-          }}
-        >
-          <div className="flex gap-1 mb-1.5 border-b border-gray-200 pb-1.5">
-            <span className={cn(
-              "text-[11px] font-medium px-2 py-0.5 rounded-full",
-              colorMap[event.color].bg,
-              colorMap[event.color].text
-            )}>
-              {event.startTime} - {event.endTime}
-            </span>
-          </div>
-          <div className="text-sm font-medium text-gray-800 line-clamp-2 group-hover:text-gray-900">
-            {event.title}
-          </div>
-          <div className="flex -space-x-2 mt-2">
-            {Array.from({ length: event.participants }).map((_, i) => (
-              <Avatar key={i} className="h-6 w-6 border-2 border-white ring-2 ring-white">
-                <AvatarImage src="/images/woman.png" />
-                <AvatarFallback className="bg-gray-100 text-gray-600 text-xs">
-                  {String.fromCharCode(65 + i)}
-                </AvatarFallback>
-              </Avatar>
+      {/* Calendar Grid */}
+      <div className="flex-1 overflow-visible relative">
+        <div className="grid grid-cols-[80px_1fr] gap-2" style={{ height: '1020px' }}>
+          {/* Time Slots */}
+          <div className="col-span-1 bg-white">
+            {Array.from({ length: 18 }, (_, i) => (
+              <div key={i} className="h-[120px] relative">
+                <span className="absolute top-0 right-4 text-[11px] text-gray-500 font-medium border-b border-gray-200">
+                  {String(9 + i).padStart(2, '0')}:00
+                </span>
+              </div>
             ))}
           </div>
-        </div>
-      ))}
+
+          {/* Calendar Cells */}
+          <div className="grid grid-cols-7 col-span-1">
+            {Array.from({ length: 7 }, (_, dayIndex) => (
+              <div key={dayIndex} className="relative border-l border-gray-200">
+                {Array.from({ length: 18 }, (_, hourIndex) => (
+                  <div 
+                    key={hourIndex} 
+                    className={cn(
+                      "h-[120px] w-full border-t border-gray-200",
+                      hourIndex === 0 && "border-t-0"
+                    )}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+
+          {/* Events Layer */}
+          <div className="absolute inset-0 col-start-2 col-span-7">
+            {events.map((event) => {
+              const eventStart = new Date(currentTime)
+              eventStart.setHours(parseInt(event.startTime.split(':')[0]), parseInt(event.startTime.split(':')[1]), 0, 0)
+              const eventEnd = new Date(currentTime)
+              eventEnd.setHours(parseInt(event.endTime.split(':')[0]), parseInt(event.endTime.split(':')[1]), 0, 0)
+              
+              const startOffset = (eventStart.getHours() - 9) * 120 + (eventStart.getMinutes() / 60) * 120
+              const duration = (Number(eventEnd) - Number(eventStart)) / (1000 * 60) * 1.5
+
+              return (
+                <div
+                  key={event.id}
+                  className={cn(
+                    "absolute p-3 rounded-lg transition-all duration-500 border-b-2",
+                    colorMap[event.color].bg,
+                    colorMap[event.color].border,
+                    colorMap[event.color].hover,
+                    "cursor-pointer group"
+                  )}
+                  style={{
+                    left: `${(event.column - 1) * (100 / 7)}%`,
+                    top: `${startOffset}px`,
+                    width: `calc(${100 / 7}% - 8px)`,
+                    height: `${duration}px`,
+                    margin: '0 4px'
+                  }}
+                >
+                  <div className="flex gap-1 mb-1.5 border-b border-gray-200 pb-1.5">
+                    <span className={cn(
+                      "text-[11px] font-medium px-2 py-0.5 rounded-full",
+                      colorMap[event.color].bg,
+                      colorMap[event.color].text
+                    )}>
+                      {event.startTime} - {event.endTime}
+                    </span>
+                  </div>
+                  <div className="text-sm font-medium text-gray-800 line-clamp-2 group-hover:text-gray-900">
+                    {event.title}
+                  </div>
+                  <div className="flex -space-x-2 mt-2">
+                    {Array.from({ length: event.participants }).map((_, i) => (
+                      <Avatar key={i} className="h-6 w-6 border-2 border-white ring-2 ring-white">
+                        <AvatarImage src="/images/woman.png" />
+                        <AvatarFallback className="bg-gray-100 text-gray-600 text-xs">
+                          {String.fromCharCode(65 + i)}
+                        </AvatarFallback>
+                      </Avatar>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
     
             {/* Connection Lines */}
-                {events
+            {events
               .filter(event => event.connected)
               .map(event => {
                 const x = (event.column - 1) * 14.28
-                const y = event.row * 50
+                const y = ((parseInt(event.startTime.split(':')[0]) - 9) * 120) + ((parseInt(event.startTime.split(':')[1]) / 60) * 120)
                 return event.connected?.direction === 'right' ? (
                   <div
                     key={`line-${event.id}`}
@@ -361,8 +348,7 @@ export default function CalendarApp() {
           </div>
         </div>
       </div>
-
-      
     </div>
   )
 }
+
