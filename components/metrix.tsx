@@ -37,7 +37,7 @@ export function Metrics() {
           <div className="text-sm text-gray-500">{metric.label}</div>
           <div className="text-xl font-semibold mt-1 text-gray-900">{metric.value}</div>
           <div className="text-xs text-gray-400 mt-1">{metric.subLabel}</div>
-          <AreaChartSmall data={metric.data} color={metric.color} />
+          <AreaChartSmall data={metric.data} color={metric.color} label={""} />
         </Card>
       ))}
     </div>
